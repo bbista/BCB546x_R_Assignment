@@ -90,20 +90,20 @@ teosinte.merge<-merge(snp, teosinte.genotype, by="SNP_ID")
 ```
 We now subset the merged dataset based on Chromosome number, sort it based on position and export it in the form of csv files
 
-```{r}
+```{r error=TRUE}
 
 #THis code first subsets the merged data based on Chromosome with numerical valies i.e 1-10 then groups it by the Chromosome number, folloed by sorting by the Position in ascending order and pipes them into a write.csv function that will export the files as csvs with names based on the Chromosome number, order and group (Maize/Teosinte)
 
 #The as.numeric function will show an error message when it encounters a character strinf i.e "unknow/multiple" value which will be replace by NA
 #The do function will execute a function on the piped group wise dataset, in this case export them as csv. THe do() function will show an error messsage when a datafram is not the output of the do() function, neverthless, the code still works and individual files for each chromosome are still created. 
-maize.merge[!is.na(as.numeric(maize.merge$Chromosome)),] %>%  group_by(Chromosome) %>% arrange(as.numeric(Position)) %>%   do( write.csv( .,paste0("Maize_Chr_",unique(.$Chromosome),"_ascending.csv"), row.names = F))
+maize.merge %>% filter(Chromosome %in% c(1:10))%>%  group_by(Chromosome) %>% arrange(as.numeric(Position)) %>%   do( write.csv( .,paste0("Maize_Chr_",unique(.$Chromosome),"_ascending.csv"), row.names = F))
 
-teosinte.merge[!is.na(as.numeric(teosinte.merge$Chromosome)),] %>%  group_by(Chromosome) %>% arrange(as.numeric(Position)) %>%   do( write.csv( .,paste0("Teosinte_Chr_",unique(.$Chromosome),"_ascending.csv"), row.names = F))
+teosinte.merge%>% filter(Chromosome %in% c(1:10)) %>%  group_by(Chromosome) %>% arrange(as.numeric(Position)) %>%   do( write.csv( .,paste0("Teosinte_Chr_",unique(.$Chromosome),"_ascending.csv"), row.names = F))
 
 
 ```
 For the second part of the question, we will now replace "?/?" with "-/-" and then export them in descending order of positions 
-```{r}
+```{r error=TRUE}
 
 
 #replace all ? with -
@@ -111,9 +111,9 @@ maize <- data.frame(lapply(maize.merge, gsub, pattern = "?", replacement = "-", 
 teosinte <- data.frame(lapply(teosinte.merge, gsub, pattern = "?", replacement = "-", fixed = TRUE))
  
 #exporting files
-maize[!is.na(as.numeric(maize$Chromosome)),] %>%  group_by(Chromosome) %>% arrange(desc(as.numeric(Position))) %>%   do( write.csv( .,paste0("Maize_Chr_",unique(.$Chromosome),"_descending.csv"), row.names = F))
+maize%>% filter(Chromosome %in% c(1:10)) %>%  group_by(Chromosome) %>% arrange(desc(as.numeric(Position))) %>%   do( write.csv( .,paste0("Maize_Chr_",unique(.$Chromosome),"_descending.csv"), row.names = F))
 
-teosinte[!is.na(as.numeric(teosinte$Chromosome)),] %>%  group_by(Chromosome) %>% arrange(desc(as.numeric(Position))) %>%   do( write.csv( .,paste0("Teosinte_Chr_",unique(.$Chromosome),"_descending.csv"), row.names = F))
+teosinte%>% filter(Chromosome %in% c(1:10)) %>%  group_by(Chromosome) %>% arrange(desc(as.numeric(Position))) %>%   do( write.csv( .,paste0("Teosinte_Chr_",unique(.$Chromosome),"_descending.csv"), row.names = F))
 
 
 ```

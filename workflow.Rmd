@@ -83,7 +83,7 @@ teosinte.genotype <- teosinte.genotype[-c(1,2,3), ]
 ```
 
 Now, the transposed genotype file is merged with the snp info file:
-``` {r}
+```{r}
 maize.merge<-merge(snp, maize.genotype, by="SNP_ID")
 teosinte.merge<-merge(snp, teosinte.genotype, by="SNP_ID")
 
@@ -194,9 +194,8 @@ b$Chromosome<-as.numeric(b$Chromosome)
 b<-b%>% select(SNP_ID, Group, Base, Position, Chromosome)%>% filter(Base!="?/?")
 b<-b[!duplicated(b),]
 b<-b[!is.na(as.numeric(b$Position)),]
-g<-ggplot(data = b) + geom_point(mapping=aes(x=as.numeric(Position), y=Chromosome, color=Base))+ 
-  scale_y_discrete(limit=c(1:10), label=c(1:10)) +labs(y = "Chromosome" , x="Chromosome position")
+g<-ggplot(data = b) + geom_point(mapping=aes(x=as.numeric(Position), y=Group, color=Base)) +labs(y = "Group" , x="Chromosome position")
 
-g + facet_wrap(~ Group,ncol=2)
+g + facet_wrap(~ Chromosome,ncol=2)
 
 ```

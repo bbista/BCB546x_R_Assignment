@@ -1,0 +1,24 @@
+
+In general you did a good job, but there are just few details that in my perpective should be corrected.
+
+Data inspection: It was really good, you used different commands to take a look of the preliminary data. 
+You can also use some commands like ncol(), nrow(), colnames() etc. to get an idea about your file.
+The explanation of every step that you followed it was clear.
+
+Data processing: You did a good explanation of the steps that you followed, but when I was trying to run the code in the “Transposing the subset of genotypes to merge with the SNP data frame” it gave me an error as you mentioned in your explanation.
+“Error: Results 1, 2, 3, 4, 5, ... must be data frames, not NULL” So, I was not able to see the files that you should to create 
+
+Visualization: The graph crated using the “SNPs per chromosome“ looks very nice, you did not include the SNPs with unknown position, SNPs with multiple position and SNPs NA in the graph. But, even though the graph looks very informative and well organized.
+- The graph you created in the “#tidying up the data using melt” looks great, combining the Number of polymorphism position, the chromosome number and including the groups looks very informative.
+- The graph that represent the counts by chromosome including the groups also looks great. 
+- In the graph “SNPs by Group, filling by Homozygosity” I liked the way that we can observe the percentage or count of the False, True and NA homozygous.
+- The last graph the chromosome position and group is a little bit difficult to understand but you did an amazing job.
+
+In general in the visualization part you did an excellent job.
+
+README FILE
+It seems that you forgot to create the README file in the GitHub repository where you can give a brief explanation of the files that are contained in the repository.
+The workflow file, posted it in the GitHub repository is very good organized with a good description on every step that you followed. 
+It was required to upload in the GitHub repository the 40 different files that we produced: 20 files for maize and 20 files for teosinte which it seems that you did not upload them.
+
+
